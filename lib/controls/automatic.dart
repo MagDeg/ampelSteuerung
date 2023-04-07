@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../variables.dart';
+
 class AutomaticControl extends StatefulWidget {
   const AutomaticControl({Key? key}) : super(key: key);
 
@@ -9,11 +11,10 @@ class AutomaticControl extends StatefulWidget {
 
 class _AutomaticControlState extends State<AutomaticControl> {
 
-  bool green = false;
-  bool red = false;
+  bool green = true;
+  bool red = true;
 
-  bool active = false;
-  bool preset = false;
+
 
   double greenTimeOn = 0;
   double greenTimeOff = 0;
@@ -52,41 +53,9 @@ class _AutomaticControlState extends State<AutomaticControl> {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   const Text("Durch das Drücken auf eines der Felder wird die jeweilige Lampe der Ampel aus oder an geschaltet", style: TextStyle(fontSize: 17.0),),
-                  const SizedBox(height: 50.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Expanded(child:  Text('Automatischer Modus', style: TextStyle(fontSize: 17),)),
-                      Expanded(
-                        child: Switch(
-                            value: active,
-                            onChanged: (value) => setState(() {
-                              active = value;
-                              if(active) {
-                                green = true;
-                                red = true;
-                              } else {
-                                green = false;
-                                red = false;
-                              }
-                            })),
-                      )
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Expanded(child:  Text('Voreinstellung', style: TextStyle(fontSize: 17),)),
-                      Expanded(
-                        child: Switch(
-                            value: preset,
-                            onChanged: (value) => setState(() {
-                              preset = value;
-                            })),
-                      )
-                    ],
-                  ),
-                  const SizedBox(height: 20.0),
+                  const SizedBox(height: 25.0),
+                  presetMode ? Container(decoration: BoxDecoration(borderRadius: BorderRadius.circular(8.0), color: Colors.black38, ), child: Container(padding: const EdgeInsets.all(8.0), child: const Text("Voreinstellungsmodus aktiv!", style: TextStyle(color: Colors.yellow, fontSize: 17.0)))) : Container(),
+                  presetMode ? const SizedBox(height: 25.0) : Container(),
                   const Align(alignment: Alignment.centerLeft , child:  Text("Zeit grüne Lampe aus", style: TextStyle(fontSize: 17.0),)),
                   Row(
                     children: [
@@ -96,14 +65,13 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             thumbColor: Colors.green,
                             inactiveColor: Colors.green,
                             max: 20,
-                            value: greenTimeOn,
-                            onChanged: active ? (value) {
+                            value: greenTimeOff,
+                            onChanged: (value) {
                               setState(() {
-
-                                greenTimeOn = value;
-                                greenTimeOnController.text = value.round().toString();
+                                greenTimeOff = value;
+                                greenTimeOffController.text = value.round().toString();
                               });
-                            } : null
+                            }
                         ),
                       ),
                       SizedBox(
@@ -111,28 +79,22 @@ class _AutomaticControlState extends State<AutomaticControl> {
                         height: 28,
                         child: Container(
                           color: Colors.white,
-                          padding: EdgeInsets.all(2.0),
+                          padding: const EdgeInsets.all(2.0),
                           child: Align(
                             alignment: Alignment.center,
                             child: TextField(
                               keyboardType: TextInputType.number,
                               textAlignVertical: TextAlignVertical.center,
-                              controller: greenTimeOnController,
-                              onChanged: (x) {
-                                setState(() {
-                                  if (double.parse(x) > 20) {
-                                    return;
-                                  } else {
-                                    greenTimeOn = double.parse(x);
-                                  }
-
-                                });
-                              },
+                              controller: greenTimeOffController,
                               onSubmitted: (y) {
                                 if (double.parse(y) > 20) {
                                   setState(() {
-                                    greenTimeOn = 20.0;
-                                    greenTimeOnController.text = "20";
+                                    greenTimeOff = 20.0;
+                                    greenTimeOffController.text = "20";
+                                  });
+                                } else {
+                                  setState(() {
+                                    greenTimeOff = double.parse(y);
                                   });
                                 }
                               },
@@ -152,13 +114,13 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             thumbColor: Colors.green,
                             inactiveColor: Colors.green,
                             max: 20,
-                            value: greenTimeOff,
-                            onChanged: active ? (value) {
+                            value: greenTimeOn,
+                            onChanged: (value) {
                               setState(() {
-                                greenTimeOff = value;
-                                greenTimeOffController.text = value.round().toString();
+                                greenTimeOn = value;
+                                greenTimeOnController.text = value.round().toString();
                               });
-                            } : null
+                            }
                         ),
                       ),
                       SizedBox(
@@ -172,22 +134,17 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             child: TextField(
                               keyboardType: TextInputType.number,
                               textAlignVertical: TextAlignVertical.center,
-                              controller: greenTimeOffController,
-                              onChanged: (x) {
-                                setState(() {
-                                  if (double.parse(x) > 20) {
-                                    return;
-                                  } else {
-                                    greenTimeOff = double.parse(x);
-                                  }
+                              controller: greenTimeOnController,
 
-                                });
-                              },
                               onSubmitted: (y) {
                                 if (double.parse(y) > 20) {
                                   setState(() {
-                                    greenTimeOff = 20.0;
-                                    greenTimeOffController.text = "20";
+                                    greenTimeOn = 20.0;
+                                    greenTimeOnController.text = "20";
+                                  });
+                                } else {
+                                  setState(() {
+                                    greenTimeOn = double.parse(y);
                                   });
                                 }
                               },
@@ -209,13 +166,13 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             thumbColor: Colors.red,
                             inactiveColor: Colors.red,
                             max: 20,
-                            value: redTimeOn,
-                            onChanged: active ? (value) {
+                            value: redTimeOff,
+                            onChanged:(value) {
                               setState(() {
-                                redTimeOn = value;
-                                redTimeOnController.text = value.round().toString();
+                                redTimeOff = value;
+                                redTimeOffController.text = value.round().toString();
                               });
-                            } : null
+                            }
                         ),
                       ),
                       SizedBox(
@@ -223,28 +180,22 @@ class _AutomaticControlState extends State<AutomaticControl> {
                         height: 28,
                         child: Container(
                           color: Colors.white,
-                          padding: EdgeInsets.all(2.0),
+                          padding: const EdgeInsets.all(2.0),
                           child: Align(
                             alignment: Alignment.center,
                             child: TextField(
                               keyboardType: TextInputType.number,
                               textAlignVertical: TextAlignVertical.center,
-                              controller: redTimeOnController,
-                              onChanged: (x) {
-                                setState(() {
-                                  if (double.parse(x) > 20) {
-                                    return;
-                                  } else {
-                                    redTimeOn = double.parse(x);
-                                  }
-
-                                });
-                              },
+                              controller: redTimeOffController,
                               onSubmitted: (y) {
                                 if (double.parse(y) > 20) {
                                   setState(() {
-                                    redTimeOn = 20.0;
-                                    redTimeOnController.text = "20";
+                                    redTimeOff = 20.0;
+                                    redTimeOffController.text = "20";
+                                  });
+                                } else {
+                                  setState(() {
+                                    redTimeOff = double.parse(y);
                                   });
                                 }
                               },
@@ -264,13 +215,13 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             thumbColor: Colors.red,
                             inactiveColor: Colors.red,
                             max: 20,
-                            value: redTimeOff,
-                            onChanged: active ? (value) {
+                            value: redTimeOn,
+                            onChanged:(value) {
                               setState(() {
-                                redTimeOff = value;
-                                redTimeOffController.text = value.round().toString();
+                                redTimeOn = value;
+                                redTimeOnController.text = value.round().toString();
                               });
-                            } : null
+                            }
                         ),
                       ),
                       SizedBox(
@@ -278,28 +229,22 @@ class _AutomaticControlState extends State<AutomaticControl> {
                         height: 28,
                         child: Container(
                           color: Colors.white,
-                          padding: EdgeInsets.all(2.0),
+                          padding: const EdgeInsets.all(2.0),
                           child: Align(
                             alignment: Alignment.center,
                             child: TextField(
                               keyboardType: TextInputType.number,
                               textAlignVertical: TextAlignVertical.center,
-                              controller: redTimeOffController,
-                              onChanged: (x) {
-                                setState(() {
-                                  if (double.parse(x) > 20) {
-                                    return;
-                                  } else {
-                                    redTimeOff = double.parse(x);
-                                  }
-
-                                });
-                              },
+                              controller: redTimeOnController,
                               onSubmitted: (y) {
                                 if (double.parse(y) > 20) {
                                   setState(() {
-                                    redTimeOff = 20.0;
-                                    redTimeOffController.text = "20";
+                                    redTimeOn = 20.0;
+                                    redTimeOnController.text = "20";
+                                  });
+                                } else {
+                                  setState(() {
+                                    redTimeOn = double.parse(y);
                                   });
                                 }
                               },
@@ -316,7 +261,7 @@ class _AutomaticControlState extends State<AutomaticControl> {
 
                           onPressed: () {
                             setState(() {
-                              if (active) red = !red;
+                              red = !red;
                             });
                           },
                           child: Container(
@@ -338,7 +283,7 @@ class _AutomaticControlState extends State<AutomaticControl> {
                         child: RawMaterialButton(
                           onPressed: () {
                             setState(() {
-                              if (active) green = !green;
+                              green = !green;
                             });
                           },
                           child: Container(

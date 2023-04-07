@@ -1,3 +1,5 @@
+import 'package:ampel_lampe_steuerung/functions/shared_preferences.dart';
+import 'package:ampel_lampe_steuerung/variables.dart';
 import 'package:flutter/material.dart';
 
 import 'control_page.dart';
@@ -16,6 +18,14 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+
+  @override
+  void initState() {
+    getPref();
+    print(webIpGlobal);
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -42,10 +52,10 @@ class _MainScreenState extends State<MainScreen> {
 
                 }
 
-            )
+            ),
 
           ]
-        )
+        ),
       ),
     );
   }

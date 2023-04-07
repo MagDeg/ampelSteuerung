@@ -1,4 +1,6 @@
 import 'package:ampel_lampe_steuerung/controls/automatic.dart';
+import 'package:ampel_lampe_steuerung/setting_screen.dart';
+import 'package:ampel_lampe_steuerung/variables.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +19,7 @@ class _ControlPageState extends State<ControlPage> {
   final shownPages = [
     const ManualControl(),
     const AutomaticControl(),
+
   ];
 
   bool automatic = true;
@@ -28,10 +31,16 @@ class _ControlPageState extends State<ControlPage> {
     return Scaffold(
         appBar: AppBar(
           title: const Text("Lampen Steuerung"),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => SettingScreen()));
+                },
+                icon: Icon(Icons.settings))
+          ],
         ),
-        body:
-
-          Scaffold(
+        body: Scaffold(
             appBar: AppBar(
               backgroundColor: Colors.grey,
               title: Row(
@@ -137,47 +146,13 @@ class _ControlPageState extends State<ControlPage> {
               ),
             ),
             body: Center(child: shownPages[currentIndexOfShownPages],),
-        )
-        // bottomNavigationBar: Container(
-        //   decoration: const BoxDecoration(
-        //       gradient: LinearGradient(
-        //         begin: Alignment.topLeft,
-        //         end: Alignment.bottomRight,
-        //         colors: <Color>[Colors.indigo, Colors.indigoAccent],
-        //       )
-        //   ),
-        //   child: NavigationBar(
-        //     backgroundColor: Colors.transparent,
-        //     selectedIndex: currentIndexOfShownPages,
-        //     onDestinationSelected: (int newIndex) {
-        //       setState(() {
-        //         currentIndexOfShownPages = newIndex;
-        //       });
-        //     },
-        //     destinations: const [
-        //       NavigationDestination(
-        //           selectedIcon: Icon(
-        //             Icons.accessibility,
-        //             color: Colors.white,
-        //           ),
-        //           icon: Icon(
-        //             Icons.accessibility_outlined,
-        //             color: Colors.white,
-        //           ),
-        //           label: "Manuell"),
-        //       NavigationDestination(
-        //           selectedIcon: Icon(
-        //             Icons.keyboard,
-        //             color: Colors.white,
-        //           ),
-        //           icon: Icon(
-        //             Icons.keyboard_outlined,
-        //             color: Colors.white,
-        //           ),
-        //           label: "Automatisch"),
-        //     ],
-        //   ),
-        // ),
+        ),
+      floatingActionButton: presetMode ? FloatingActionButton(
+        onPressed: () {
+
+        },
+        child: const Icon(Icons.upload_rounded),
+      ) : Container(),
         );
   }
 }
