@@ -128,7 +128,7 @@ class _AutomaticControlState extends State<AutomaticControl> {
                         height: 28,
                         child: Container(
                           color: Colors.white,
-                          padding: EdgeInsets.all(2.0),
+                          padding: const EdgeInsets.all(2.0),
                           child: Align(
                             alignment: Alignment.center,
                             child: TextField(

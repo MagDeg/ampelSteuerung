@@ -1,3 +1,3 @@
 bool presetMode = false;
 
-String webIpGlobal = "";
+String webIpGlobal = "http://magnus.degwerth.de";

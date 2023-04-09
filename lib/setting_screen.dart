@@ -22,7 +22,7 @@ class _SettingScreenState extends State<SettingScreen> {
         leading: IconButton(
           onPressed: () {
             Navigator.pop(context);
-            Navigator.push(context, MaterialPageRoute(builder: (_) => ControlPage()));
+            Navigator.push(context, MaterialPageRoute(builder: (_) => const ControlPage()));
           },
           icon: const Icon(Icons.arrow_back),
 
@@ -57,7 +57,7 @@ class _SettingScreenState extends State<SettingScreen> {
                           }),
                      ],
                   ),
-                  presetMode ? Container(padding: const EdgeInsets.all(8.0), child: Text("Der Voreinstellungsmodus ermöglicht dir bestimmte Voreinstellungen zu treffen, die nicht in Echtzeit übernommen werden. Um diese an dei Ampel zu schicken, musst du sie durch ein Drücken auf den unten rechts erscheindenden Button an die Ampel senden.")) : Container(),
+                  presetMode ? Container(padding: const EdgeInsets.all(8.0), child: const Text("Der Voreinstellungsmodus ermöglicht dir bestimmte Voreinstellungen zu treffen, die nicht in Echtzeit übernommen werden. Um diese an dei Ampel zu schicken, musst du sie durch ein Drücken auf den unten rechts erscheindenden Button an die Ampel senden.")) : Container(),
                   const SizedBox(height: 50.0),
                   Container(
                     padding: const EdgeInsets.all(8.0),

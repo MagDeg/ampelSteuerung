@@ -35,9 +35,9 @@ class _ControlPageState extends State<ControlPage> {
             IconButton(
                 onPressed: () {
                   Navigator.pop(context);
-                  Navigator.push(context, MaterialPageRoute(builder: (_) => SettingScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const  SettingScreen()));
                 },
-                icon: Icon(Icons.settings))
+                icon: const Icon(Icons.settings))
           ],
         ),
         body: Scaffold(
@@ -49,7 +49,7 @@ class _ControlPageState extends State<ControlPage> {
                   Expanded(
                       child: Center(
                           child: Container(
-                            color: automatic ? Color(0x00BFFF).withOpacity(0.4) : Colors.transparent,
+                            color: automatic ? const Color(0x0000bfff).withOpacity(0.4) : Colors.transparent,
                             child: TextButton(
                                       onPressed: () {
                                         setState(() {
@@ -65,7 +65,7 @@ class _ControlPageState extends State<ControlPage> {
 
                                       },
                                       child: Column(
-                                        children: [
+                                        children: const [
                                           Icon(
                                             Icons.computer,
                                             color: Colors.white,
@@ -81,7 +81,7 @@ class _ControlPageState extends State<ControlPage> {
                   Expanded(
                       child: Center(
                           child: Container(
-                            color: manuel ? Color(0x00BFFF).withOpacity(0.4) : Colors.transparent,
+                            color: manuel ? const Color(0x0000bfff).withOpacity(0.4) : Colors.transparent,
                             child: TextButton(
                                     onPressed: () {
                                       setState(() {
@@ -98,7 +98,7 @@ class _ControlPageState extends State<ControlPage> {
 
                                     },
                                     child: Column(
-                                      children: [
+                                      children: const [
                                         Icon(
                                           Icons.accessibility,
                                           color: Colors.white,
@@ -114,7 +114,7 @@ class _ControlPageState extends State<ControlPage> {
                   Expanded(
                       child: Center(
                           child: Container(
-                            color: x ? Color(0x00BFFF).withOpacity(0.4) : Colors.transparent,
+                            color: x ? const Color(0x0000bfff).withOpacity(0.4) : Colors.transparent,
                             child: TextButton(
                               onPressed: () {
                                 setState(() {
@@ -129,7 +129,7 @@ class _ControlPageState extends State<ControlPage> {
 
                               },
                               child: Column(
-                                children: [
+                                children: const [
                                   Icon(
                                     Icons.nfc_sharp,
                                     color: Colors.white,
