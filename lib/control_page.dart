@@ -1,7 +1,7 @@
 import 'package:ampel_lampe_steuerung/controls/automatic.dart';
+import 'package:ampel_lampe_steuerung/functions/send_data_to_http.dart';
 import 'package:ampel_lampe_steuerung/setting_screen.dart';
 import 'package:ampel_lampe_steuerung/variables.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 import 'controls/manual.dart';
@@ -28,6 +28,28 @@ class _ControlPageState extends State<ControlPage> {
 
   @override
   Widget build(BuildContext context) {
+
+    switch(currentIndexOfShownPages) {
+      case 0: {
+        //changing ip
+        sendIpNow = "$webIpGlobal?mode=BlinkManual";
+        print(sendIpNow);
+        break;
+      }
+      case 1: {
+        //changing ip
+        sendIpNow = "$webIpGlobal?mode=BlinkAsync";
+        print(sendIpNow);
+        break;
+      }
+      case 2: {
+        //changing ip
+        sendIpNow = "$webIpGlobal?mode=BlinkSync";
+        print(sendIpNow);
+        break;
+      }
+    }
+
     return Scaffold(
         appBar: AppBar(
           title: const Text("Lampen Steuerung"),
@@ -60,6 +82,10 @@ class _ControlPageState extends State<ControlPage> {
                                             manuel = false;
                                             x = false;
                                             currentIndexOfShownPages = 1;
+
+
+
+
                                           }
                                         });
 
@@ -149,7 +175,9 @@ class _ControlPageState extends State<ControlPage> {
         ),
       floatingActionButton: presetMode ? FloatingActionButton(
         onPressed: () {
-
+          print('button pressed');
+          print(webIpGlobal);
+          //sendData('Hello World');
         },
         child: const Icon(Icons.upload_rounded),
       ) : Container(),

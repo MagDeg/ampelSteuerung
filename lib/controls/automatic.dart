@@ -1,6 +1,10 @@
+import 'package:ampel_lampe_steuerung/functions/send_data_to_http.dart';
 import 'package:flutter/material.dart';
 
 import '../variables.dart';
+
+//BlinkAsync
+
 
 class AutomaticControl extends StatefulWidget {
   const AutomaticControl({Key? key}) : super(key: key);
@@ -34,6 +38,9 @@ class _AutomaticControlState extends State<AutomaticControl> {
     greenTimeOffController.text = greenTimeOff.round().toString();
     redTimeOnController.text = redTimeOn.round().toString();
     redTimeOffController.text = redTimeOff.round().toString();
+
+    sendIpNow = "$webIpGlobal/BlinkAsync?";
+
 
     return ListView(
       children: [
@@ -70,6 +77,11 @@ class _AutomaticControlState extends State<AutomaticControl> {
                               setState(() {
                                 greenTimeOff = value;
                                 greenTimeOffController.text = value.round().toString();
+
+                                String data = "${sendIpNow}on=${greenTimeOn.round()},${redTimeOn.round()}&off=${greenTimeOff.round()},${redTimeOff.round()}";
+                                print(data);
+                                fetchAlbum(data);
+
                               });
                             }
                         ),
