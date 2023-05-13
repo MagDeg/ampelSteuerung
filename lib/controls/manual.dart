@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../functions/send_data_to_http.dart';
 import '../variables.dart';
 
 class ManualControl extends StatefulWidget {
@@ -14,9 +15,14 @@ class _ManualControlState extends State<ManualControl> {
   bool green = true;
   bool red = true;
 
+  int greenInt = 1;
+  int redInt = 1;
 
   @override
   Widget build(BuildContext context) {
+
+    sendIpNow = "$webIpGlobal/BlinkManual?";
+
     return ListView(
       children: [
         Container(
@@ -45,6 +51,15 @@ class _ManualControlState extends State<ManualControl> {
                           onPressed: () {
                             setState(() {
                               red = !red;
+                              if (red) {
+                                redInt = 1;
+                              } else {
+                                redInt = 0;
+                              }
+
+                              String data = "${sendIpNow}state=$greenInt$redInt";
+                              print(data);
+                              fetchAlbum(data);
                             });
                           },
                           child: Container(
@@ -67,6 +82,16 @@ class _ManualControlState extends State<ManualControl> {
                           onPressed: () {
                             setState(() {
                               green = !green;
+                              if (green) {
+                                greenInt = 1;
+                              } else {
+                                greenInt = 0;
+                              }
+
+                              String data = "${sendIpNow}state=$greenInt$redInt";
+                              print(data);
+                              fetchAlbum(data);
+
                             });
                           },
                           child: Container(

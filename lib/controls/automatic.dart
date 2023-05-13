@@ -34,10 +34,10 @@ class _AutomaticControlState extends State<AutomaticControl> {
 
   @override
   Widget build(BuildContext context) {
-    greenTimeOnController.text = greenTimeOn.round().toString();
-    greenTimeOffController.text = greenTimeOff.round().toString();
-    redTimeOnController.text = redTimeOn.round().toString();
-    redTimeOffController.text = redTimeOff.round().toString();
+    greenTimeOnController.text = greenTimeOn.toString();
+    greenTimeOffController.text = greenTimeOff.toString();
+    redTimeOnController.text = redTimeOn.toString();
+    redTimeOffController.text = redTimeOff.toString();
 
     sendIpNow = "$webIpGlobal/BlinkAsync?";
 
@@ -71,23 +71,26 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             activeColor: Colors.green,
                             thumbColor: Colors.green,
                             inactiveColor: Colors.green,
-                            max: 20,
+                            max: 10,
+                            divisions: 100,
                             value: greenTimeOff,
+                            onChangeEnd: (value) {
+                              String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                              print(data);
+                              fetchAlbum(data);
+                            },
                             onChanged: (value) {
                               setState(() {
-                                greenTimeOff = value;
-                                greenTimeOffController.text = value.round().toString();
-
-                                String data = "${sendIpNow}on=${greenTimeOn.round()},${redTimeOn.round()}&off=${greenTimeOff.round()},${redTimeOff.round()}";
-                                print(data);
-                                fetchAlbum(data);
+                                print(double.parse(value.toStringAsFixed(2)));
+                                greenTimeOff = double.parse(value.toStringAsFixed(2));
+                                greenTimeOffController.text = double.parse(value.toStringAsFixed(2)).toString();
 
                               });
                             }
                         ),
                       ),
                       SizedBox(
-                        width: 30,
+                        width: 40,
                         height: 28,
                         child: Container(
                           color: Colors.white,
@@ -99,15 +102,18 @@ class _AutomaticControlState extends State<AutomaticControl> {
                               textAlignVertical: TextAlignVertical.center,
                               controller: greenTimeOffController,
                               onSubmitted: (y) {
-                                if (double.parse(y) > 20) {
+                                if (double.parse(y) > 10.0) {
                                   setState(() {
-                                    greenTimeOff = 20.0;
-                                    greenTimeOffController.text = "20";
+                                    greenTimeOff = 10.0;
+                                    greenTimeOffController.text = "10";
                                   });
                                 } else {
                                   setState(() {
                                     greenTimeOff = double.parse(y);
                                   });
+                                    String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                                    print(data);
+                                    fetchAlbum(data);
                                 }
                               },
                             ),
@@ -125,18 +131,24 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             activeColor: Colors.green,
                             thumbColor: Colors.green,
                             inactiveColor: Colors.green,
-                            max: 20,
+                            max: 10,
+                            divisions: 100,
                             value: greenTimeOn,
+                            onChangeEnd: (value) {
+                              String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                              print(data);
+                              fetchAlbum(data);
+                            },
                             onChanged: (value) {
                               setState(() {
-                                greenTimeOn = value;
-                                greenTimeOnController.text = value.round().toString();
+                                greenTimeOn = double.parse(value.toStringAsFixed(2));
+                                greenTimeOnController.text = double.parse(value.toStringAsFixed(2)).toString();
                               });
                             }
                         ),
                       ),
                       SizedBox(
-                        width: 30,
+                        width: 40,
                         height: 28,
                         child: Container(
                           color: Colors.white,
@@ -149,16 +161,19 @@ class _AutomaticControlState extends State<AutomaticControl> {
                               controller: greenTimeOnController,
 
                               onSubmitted: (y) {
-                                if (double.parse(y) > 20) {
+                                if (double.parse(y) > 10) {
                                   setState(() {
-                                    greenTimeOn = 20.0;
-                                    greenTimeOnController.text = "20";
+                                    greenTimeOn = 10.0;
+                                    greenTimeOnController.text = "10";
                                   });
                                 } else {
                                   setState(() {
                                     greenTimeOn = double.parse(y);
                                   });
                                 }
+                                String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                                print(data);
+                                fetchAlbum(data);
                               },
                             ),
                           ),
@@ -177,18 +192,24 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             activeColor: Colors.red,
                             thumbColor: Colors.red,
                             inactiveColor: Colors.red,
-                            max: 20,
+                            max: 10,
+                            divisions: 100,
                             value: redTimeOff,
+                            onChangeEnd: (value) {
+                              String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                              print(data);
+                              fetchAlbum(data);
+                            },
                             onChanged:(value) {
                               setState(() {
-                                redTimeOff = value;
-                                redTimeOffController.text = value.round().toString();
+                                redTimeOff = double.parse(value.toStringAsFixed(2));
+                                redTimeOffController.text = double.parse(value.toStringAsFixed(2)).toString();
                               });
                             }
                         ),
                       ),
                       SizedBox(
-                        width: 30,
+                        width: 40,
                         height: 28,
                         child: Container(
                           color: Colors.white,
@@ -200,16 +221,19 @@ class _AutomaticControlState extends State<AutomaticControl> {
                               textAlignVertical: TextAlignVertical.center,
                               controller: redTimeOffController,
                               onSubmitted: (y) {
-                                if (double.parse(y) > 20) {
+                                if (double.parse(y) > 10) {
                                   setState(() {
-                                    redTimeOff = 20.0;
-                                    redTimeOffController.text = "20";
+                                    redTimeOff = 10.0;
+                                    redTimeOffController.text = "10";
                                   });
                                 } else {
                                   setState(() {
                                     redTimeOff = double.parse(y);
                                   });
                                 }
+                                String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                                print(data);
+                                fetchAlbum(data);
                               },
                             ),
                           ),
@@ -226,18 +250,24 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             activeColor: Colors.red,
                             thumbColor: Colors.red,
                             inactiveColor: Colors.red,
-                            max: 20,
+                            max: 10,
+                            divisions: 100,
                             value: redTimeOn,
+                            onChangeEnd: (value) {
+                              String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                              print(data);
+                              fetchAlbum(data);
+                            },
                             onChanged:(value) {
                               setState(() {
-                                redTimeOn = value;
-                                redTimeOnController.text = value.round().toString();
+                                redTimeOn = double.parse(value.toStringAsFixed(2));
+                                redTimeOnController.text = double.parse(value.toStringAsFixed(2)).toString();
                               });
                             }
                         ),
                       ),
                       SizedBox(
-                        width: 30,
+                        width: 40,
                         height: 28,
                         child: Container(
                           color: Colors.white,
@@ -249,16 +279,19 @@ class _AutomaticControlState extends State<AutomaticControl> {
                               textAlignVertical: TextAlignVertical.center,
                               controller: redTimeOnController,
                               onSubmitted: (y) {
-                                if (double.parse(y) > 20) {
+                                if (double.parse(y) > 10) {
                                   setState(() {
-                                    redTimeOn = 20.0;
-                                    redTimeOnController.text = "20";
+                                    redTimeOn = 10.0;
+                                    redTimeOnController.text = "10";
                                   });
                                 } else {
                                   setState(() {
                                     redTimeOn = double.parse(y);
                                   });
                                 }
+                                String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                                print(data);
+                                fetchAlbum(data);
                               },
                             ),
                           ),

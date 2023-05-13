@@ -157,11 +157,11 @@ class _ControlPageState extends State<ControlPage> {
                               child: Column(
                                 children: const [
                                   Icon(
-                                    Icons.nfc_sharp,
+                                    Icons.sync,
                                     color: Colors.white,
                                   ),
                                   Text(
-                                    'x',
+                                    'Synchronisiert',
                                     style: TextStyle(color: Colors.white),
                                   ),
                                 ],
