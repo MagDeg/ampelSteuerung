@@ -57,9 +57,10 @@ class _ManualControlState extends State<ManualControl> {
                                 redInt = 0;
                               }
 
-                              String data = "${sendIpNow}state=$greenInt$redInt";
-                              print(data);
-                              fetchAlbum(data);
+                              data = "${sendIpNow}state=$greenInt$redInt";
+                              if (!presetMode) {
+                                fetchAlbum(data);
+                              }
                             });
                           },
                           child: Container(
@@ -88,10 +89,10 @@ class _ManualControlState extends State<ManualControl> {
                                 greenInt = 0;
                               }
 
-                              String data = "${sendIpNow}state=$greenInt$redInt";
-                              print(data);
-                              fetchAlbum(data);
-
+                              data = "${sendIpNow}state=$greenInt$redInt";
+                              if (!presetMode) {
+                                fetchAlbum(data);
+                              }
                             });
                           },
                           child: Container(

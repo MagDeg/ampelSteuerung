@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.md.ampel_lampe_steuerung">
    <application
-        android:label="ampel_lampe_steuerung"
+        android:label="AmpelSteuerung"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

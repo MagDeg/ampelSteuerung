@@ -34,18 +34,21 @@ class _ControlPageState extends State<ControlPage> {
         //changing ip
         sendIpNow = "$webIpGlobal?mode=BlinkManual";
         print(sendIpNow);
+        fetchAlbum(sendIpNow);
         break;
       }
       case 1: {
         //changing ip
         sendIpNow = "$webIpGlobal?mode=BlinkAsync";
         print(sendIpNow);
+        fetchAlbum(sendIpNow);
         break;
       }
       case 2: {
         //changing ip
         sendIpNow = "$webIpGlobal?mode=BlinkSync";
         print(sendIpNow);
+        fetchAlbum(sendIpNow);
         break;
       }
     }
@@ -176,7 +179,7 @@ class _ControlPageState extends State<ControlPage> {
       floatingActionButton: presetMode ? FloatingActionButton(
         onPressed: () {
           print('button pressed');
-          print(webIpGlobal);
+          print(data);
           //sendData('Hello World');
         },
         child: const Icon(Icons.upload_rounded),

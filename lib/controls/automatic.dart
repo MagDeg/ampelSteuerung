@@ -75,9 +75,11 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             divisions: 100,
                             value: greenTimeOff,
                             onChangeEnd: (value) {
-                              String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
-                              print(data);
-                              fetchAlbum(data);
+                              data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+
+                              if (!presetMode) {
+                                fetchAlbum(data);
+                              }
                             },
                             onChanged: (value) {
                               setState(() {
@@ -111,9 +113,10 @@ class _AutomaticControlState extends State<AutomaticControl> {
                                   setState(() {
                                     greenTimeOff = double.parse(y);
                                   });
-                                    String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
-                                    print(data);
+                                    data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                                    if (!presetMode) {
                                     fetchAlbum(data);
+                                  }
                                 }
                               },
                             ),
@@ -135,9 +138,10 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             divisions: 100,
                             value: greenTimeOn,
                             onChangeEnd: (value) {
-                              String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
-                              print(data);
-                              fetchAlbum(data);
+                               data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                               if (!presetMode) {
+                                 fetchAlbum(data);
+                               }
                             },
                             onChanged: (value) {
                               setState(() {
@@ -171,9 +175,10 @@ class _AutomaticControlState extends State<AutomaticControl> {
                                     greenTimeOn = double.parse(y);
                                   });
                                 }
-                                String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
-                                print(data);
-                                fetchAlbum(data);
+                                data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                                if (!presetMode) {
+                                  fetchAlbum(data);
+                                }
                               },
                             ),
                           ),
@@ -196,9 +201,10 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             divisions: 100,
                             value: redTimeOff,
                             onChangeEnd: (value) {
-                              String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
-                              print(data);
-                              fetchAlbum(data);
+                              data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                              if (!presetMode) {
+                                fetchAlbum(data);
+                              }
                             },
                             onChanged:(value) {
                               setState(() {
@@ -231,9 +237,10 @@ class _AutomaticControlState extends State<AutomaticControl> {
                                     redTimeOff = double.parse(y);
                                   });
                                 }
-                                String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
-                                print(data);
-                                fetchAlbum(data);
+                                data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                                if (!presetMode) {
+                                  fetchAlbum(data);
+                                }
                               },
                             ),
                           ),
@@ -254,9 +261,10 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             divisions: 100,
                             value: redTimeOn,
                             onChangeEnd: (value) {
-                              String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
-                              print(data);
-                              fetchAlbum(data);
+                              data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                              if (!presetMode) {
+                                fetchAlbum(data);
+                              }
                             },
                             onChanged:(value) {
                               setState(() {
@@ -289,9 +297,10 @@ class _AutomaticControlState extends State<AutomaticControl> {
                                     redTimeOn = double.parse(y);
                                   });
                                 }
-                                String data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
-                                print(data);
-                                fetchAlbum(data);
+                                data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                                if (!presetMode) {
+                                  fetchAlbum(data);
+                                }
                               },
                             ),
                           ),
@@ -299,51 +308,6 @@ class _AutomaticControlState extends State<AutomaticControl> {
                       )
                     ],
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: RawMaterialButton(
-
-                          onPressed: () {
-                            setState(() {
-                              red = !red;
-                            });
-                          },
-                          child: Container(
-                            color: red ? Colors.red : Colors.black38,
-                            height: 80.0,
-                            child: const Center(
-                              child: Text('Rot', style: TextStyle(fontSize: 30),),
-                            ),
-                          ),
-
-                        ),
-                      ),
-                      Container(
-                        width: 2.0,
-                        height: 80.0,
-                        color: Colors.black,
-                      ),
-                      Expanded(
-                        child: RawMaterialButton(
-                          onPressed: () {
-                            setState(() {
-                              green = !green;
-                            });
-                          },
-                          child: Container(
-                            color: green ? Colors.green : Colors.black38,
-                            height: 80.0,
-                            child: const Center(
-                              child: Text('Grün', style: TextStyle(fontSize: 30),),
-                            ),
-
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-
                 ],
               ),
             ),
