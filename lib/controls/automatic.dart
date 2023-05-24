@@ -15,15 +15,9 @@ class AutomaticControl extends StatefulWidget {
 
 class _AutomaticControlState extends State<AutomaticControl> {
 
-  bool green = true;
-  bool red = true;
 
 
 
-  double greenTimeOn = 0;
-  double greenTimeOff = 0;
-  double redTimeOn = 0;
-  double redTimeOff = 0;
 
   final greenTimeOnController = TextEditingController();
   final greenTimeOffController = TextEditingController();

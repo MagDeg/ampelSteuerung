@@ -12,14 +12,6 @@ class ManualControl extends StatefulWidget {
 
 class _ManualControlState extends State<ManualControl> {
 
-  bool green = true;
-  bool red = true;
-
-
-
-
-  int greenInt = 1;
-  int redInt = 1;
 
   @override
   Widget build(BuildContext context) {
