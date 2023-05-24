@@ -86,6 +86,8 @@ class _ControlPageState extends State<ControlPage> {
                                             x = false;
                                             currentIndexOfShownPages = 1;
 
+                                            data = "$webIpGlobal/BlinkAsync?on=1;1&off=1;1";
+                                            fetchAlbum(data);
 
 
 
@@ -121,6 +123,10 @@ class _ControlPageState extends State<ControlPage> {
                                           automatic = false;
                                           x = false;
                                           currentIndexOfShownPages = 0;
+
+                                          data = "$webIpGlobal/BlinkManual?state=00";
+                                          fetchAlbum(data);
+
                                         }
                                       });
 
