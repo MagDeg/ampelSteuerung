@@ -75,7 +75,7 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             divisions: 100,
                             value: greenTimeOff,
                             onChangeEnd: (value) {
-                              data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                              data = "${sendIpNow}on=$greenTimeOn;$redTimeOn&off=$greenTimeOff;$redTimeOff";
 
                               if (!presetMode) {
                                 fetchAlbum(data);
@@ -113,7 +113,7 @@ class _AutomaticControlState extends State<AutomaticControl> {
                                   setState(() {
                                     greenTimeOff = double.parse(y);
                                   });
-                                    data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                                  data = "${sendIpNow}on=$greenTimeOn;$redTimeOn&off=$greenTimeOff;$redTimeOff";
                                     if (!presetMode) {
                                     fetchAlbum(data);
                                   }
@@ -138,7 +138,7 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             divisions: 100,
                             value: greenTimeOn,
                             onChangeEnd: (value) {
-                               data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                              data = "${sendIpNow}on=$greenTimeOn;$redTimeOn&off=$greenTimeOff;$redTimeOff";
                                if (!presetMode) {
                                  fetchAlbum(data);
                                }
@@ -175,7 +175,7 @@ class _AutomaticControlState extends State<AutomaticControl> {
                                     greenTimeOn = double.parse(y);
                                   });
                                 }
-                                data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                                data = "${sendIpNow}on=$greenTimeOn;$redTimeOn&off=$greenTimeOff;$redTimeOff";
                                 if (!presetMode) {
                                   fetchAlbum(data);
                                 }
@@ -201,7 +201,7 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             divisions: 100,
                             value: redTimeOff,
                             onChangeEnd: (value) {
-                              data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                              data = "${sendIpNow}on=$greenTimeOn;$redTimeOn&off=$greenTimeOff;$redTimeOff";
                               if (!presetMode) {
                                 fetchAlbum(data);
                               }
@@ -237,7 +237,7 @@ class _AutomaticControlState extends State<AutomaticControl> {
                                     redTimeOff = double.parse(y);
                                   });
                                 }
-                                data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                                data = "${sendIpNow}on=$greenTimeOn;$redTimeOn&off=$greenTimeOff;$redTimeOff";
                                 if (!presetMode) {
                                   fetchAlbum(data);
                                 }
@@ -261,7 +261,7 @@ class _AutomaticControlState extends State<AutomaticControl> {
                             divisions: 100,
                             value: redTimeOn,
                             onChangeEnd: (value) {
-                              data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                              data = "${sendIpNow}on=$greenTimeOn;$redTimeOn&off=$greenTimeOff;$redTimeOff";
                               if (!presetMode) {
                                 fetchAlbum(data);
                               }
@@ -297,7 +297,7 @@ class _AutomaticControlState extends State<AutomaticControl> {
                                     redTimeOn = double.parse(y);
                                   });
                                 }
-                                data = "${sendIpNow}on=$greenTimeOn,$redTimeOn&off=$greenTimeOff,$redTimeOff";
+                                data = "${sendIpNow}on=$greenTimeOn;$redTimeOn&off=$greenTimeOff;$redTimeOff";
                                 if (!presetMode) {
                                   fetchAlbum(data);
                                 }
