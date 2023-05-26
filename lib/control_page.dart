@@ -14,41 +14,43 @@ class ControlPage extends StatefulWidget {
 }
 
 class _ControlPageState extends State<ControlPage> {
-  int currentIndexOfShownPages = 1;
+  int currentIndexOfShownPages = 0;
 
   final shownPages = [
     const ManualControl(),
     const AutomaticControl(),
-
   ];
 
-  bool automatic = true;
-  bool manuel = false;
-  bool x = false;
+  bool automatic = false;
+  bool manuel = true;
+  bool sync = false;
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
 
     switch(currentIndexOfShownPages) {
       case 0: {
         //changing ip
         sendIpNow = "$webIpGlobal?mode=BlinkManual";
-        print(sendIpNow);
-        fetchAlbum(sendIpNow);
+        data = "$webIpGlobal/BlinkManual?state=$green$red";
+        fetchAlbum(sendIpNow).then((value) => fetchAlbum(data));
+
+
         break;
       }
       case 1: {
         //changing ip
         sendIpNow = "$webIpGlobal?mode=BlinkAsync";
-        print(sendIpNow);
-        fetchAlbum(sendIpNow);
+        data = "$webIpGlobal/BlinkAsync?on=$greenTimeOn;$redTimeOn&off=$greenTimeOff;$redTimeOff";
+        fetchAlbum(sendIpNow).then((value) => fetchAlbum(data) );
+
+
         break;
       }
       case 2: {
         //changing ip
-        sendIpNow = "$webIpGlobal?mode=BlinkSync";
-        print(sendIpNow);
-        fetchAlbum(sendIpNow);
+        //sendIpNow = "$webIpGlobal?mode=BlinkSync";
+        //fetchAlbum(sendIpNow);
         break;
       }
     }
@@ -83,11 +85,9 @@ class _ControlPageState extends State<ControlPage> {
                                           } else {
                                             automatic = true;
                                             manuel = false;
-                                            x = false;
+                                            sync = false;
                                             currentIndexOfShownPages = 1;
 
-                                            data = "$webIpGlobal/BlinkAsync?on=1;1&off=1;1";
-                                            fetchAlbum(data);
 
 
 
@@ -121,11 +121,9 @@ class _ControlPageState extends State<ControlPage> {
                                         } else {
                                           manuel = true;
                                           automatic = false;
-                                          x = false;
+                                          sync = false;
                                           currentIndexOfShownPages = 0;
 
-                                          data = "$webIpGlobal/BlinkManual?state=00";
-                                          fetchAlbum(data);
 
                                         }
                                       });
@@ -149,14 +147,14 @@ class _ControlPageState extends State<ControlPage> {
                   Expanded(
                       child: Center(
                           child: Container(
-                            color: x ? const Color(0x0000bfff).withOpacity(0.4) : Colors.transparent,
+                            color: sync ? const Color(0x0000bfff).withOpacity(0.4) : Colors.transparent,
                             child: TextButton(
                               onPressed: () {
                                 setState(() {
-                                  if(x) {
+                                  if(sync) {
                                     return;
                                   } else {
-                                    x = true;
+                                    sync = true;
                                     automatic = false;
                                     manuel = false;
                                   }
