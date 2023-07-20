@@ -20,7 +20,7 @@ class _MainScreenState extends State<MainScreen> {
 
   @override
   void initState() {
-    getPref();
+    getPrefId();
     super.initState();
   }
 

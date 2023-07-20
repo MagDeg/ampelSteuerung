@@ -1,4 +1,5 @@
 import 'package:ampel_lampe_steuerung/controls/automatic.dart';
+import 'package:ampel_lampe_steuerung/controls/sync.dart';
 import 'package:ampel_lampe_steuerung/functions/send_data_to_http.dart';
 import 'package:ampel_lampe_steuerung/setting_screen.dart';
 import 'package:ampel_lampe_steuerung/variables.dart';
@@ -19,6 +20,7 @@ class _ControlPageState extends State<ControlPage> {
   final shownPages = [
     const ManualControl(),
     const AutomaticControl(),
+    const SyncControl()
   ];
 
   bool automatic = false;

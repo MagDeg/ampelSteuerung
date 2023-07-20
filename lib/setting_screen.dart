@@ -80,7 +80,7 @@ class _SettingScreenState extends State<SettingScreen> {
                             webIp.text = y;
                             webIpGlobal = y;
                             print(webIpGlobal);
-                            setPrefNew();
+                            setPrefNewId();
                           });
 
                         },
